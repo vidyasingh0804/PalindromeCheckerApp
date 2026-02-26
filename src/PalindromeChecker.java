@@ -1,14 +1,16 @@
+import java.util.Stack;
+
 public class PalindromeChecker {
 
     private static final String APP_NAME = "Palindrome Checker App";
-    private static final String VERSION = "1.3";
+    private static final String VERSION = "1.4";
 
     public static void main(String[] args) {
 
         showWelcomeMessage();
 
-        // New Feature: char[] + Two Pointer Approach
-        checkUsingCharArray();
+        // UC5 Feature
+        checkUsingStack();
 
         System.out.println("Application execution completed.");
     }
@@ -21,25 +23,26 @@ public class PalindromeChecker {
         System.out.println();
     }
 
-    // 🔥 Feature: Convert String → char[] and check
-    private static void checkUsingCharArray() {
+    // 🔥 UC5 - Stack Based Palindrome Check
+    private static void checkUsingStack() {
 
         String word = "madam";   // Hardcoded string
 
-        char[] characters = word.toCharArray();   // Convert to char[]
+        Stack<Character> stack = new Stack<>();
 
-        int left = 0;
-        int right = characters.length - 1;
+        // Push all characters into stack
+        for (int i = 0; i < word.length(); i++) {
+            stack.push(word.charAt(i));
+        }
 
         boolean isPalindrome = true;
 
-        while (left < right) {
-            if (characters[left] != characters[right]) {
+        // Pop and compare
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) != stack.pop()) {
                 isPalindrome = false;
                 break;
             }
-            left++;
-            right--;
         }
 
         if (isPalindrome) {
