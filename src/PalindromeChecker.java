@@ -1,19 +1,18 @@
 public class PalindromeChecker {
 
     private static final String APP_NAME = "Palindrome Checker App";
-    private static final String VERSION = "1.1";
+    private static final String VERSION = "1.2";
 
     public static void main(String[] args) {
 
         showWelcomeMessage();
 
-        // New Feature: Hardcoded String Check
-        checkHardcodedString();
+        // New Feature: Reverse-based Palindrome Check
+        checkUsingReverseMethod();
 
         System.out.println("Application execution completed.");
     }
 
-    // Welcome Message (UC1)
     private static void showWelcomeMessage() {
         System.out.println("======================================");
         System.out.println("        " + APP_NAME);
@@ -22,34 +21,22 @@ public class PalindromeChecker {
         System.out.println();
     }
 
-    // UC2: Hardcoded Palindrome Feature
-    private static void checkHardcodedString() {
+    // 🔥 Feature: Reverse the string using loop
+    private static void checkUsingReverseMethod() {
 
-        String word = "madam";   // Hardcoded string literal
+        String original = "madam";   // Hardcoded string
+        String reversed = "";
 
-        boolean result = isPalindrome(word);
+        // Reverse using for loop
+        for (int i = original.length() - 1; i >= 0; i--) {
+            reversed = reversed + original.charAt(i);
+        }
 
-        if (result) {
-            System.out.println("The string \"" + word + "\" is a Palindrome.");
+        // Compare using equals()
+        if (original.equals(reversed)) {
+            System.out.println("The string \"" + original + "\" is a Palindrome.");
         } else {
-            System.out.println("The string \"" + word + "\" is NOT a Palindrome.");
+            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
         }
-    }
-
-    // Reusable Palindrome Logic
-    private static boolean isPalindrome(String str) {
-
-        int left = 0;
-        int right = str.length() - 1;
-
-        while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-
-        return true;
     }
 }
